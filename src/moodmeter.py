@@ -1,3 +1,5 @@
+#!C:/Users/Jugacu/AppData/Local/Programs/Python/Python38-32/python.exe
+
 from dotenv import load_dotenv
 import cssutils
 from ftplib import FTP
