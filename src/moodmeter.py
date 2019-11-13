@@ -9,6 +9,8 @@ import os
 load_dotenv()
 
 default_color = '#212121'
+dirname = os.path.dirname(__file__)
+css_path_file = os.path.join(dirname, './css/main.css')
 
 colors = [
     '#080808',  # black
@@ -58,7 +60,7 @@ def showMenu():
 
 
 def readCss():
-    with open('./css/main.css', 'r') as file:
+    with open(css_path_file, 'r') as file:
         data = file.read()
         css = cssutils.parseString(data, validate=False)
         file.close()
@@ -90,13 +92,13 @@ def writeCss(css):
             text += '\t' + p + ':' + css[stl][p] + '\n'
         text += '}\n'
 
-    with open('./css/main.css', 'w') as file:
+    with open(css_path_file, 'w') as file:
         file.write(text)
         file.close()
 
 
 def upload():
-    file_path = Path('./css/main.css')
+    file_path = Path(css_path_file)
     with FTP(os.getenv('FTP_HOST')) as ftp, open(file_path, 'rb') as file:
         try:
             ftp.login(os.getenv('FTP_USER'), os.getenv('FTP_PASSWORD'))
